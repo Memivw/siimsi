@@ -15,7 +15,7 @@ class History : AppCompatActivity() {
             val intent = Intent(this,MainActivity::class.java)
             startActivity(intent)
         }
-        val startBt = findViewById<ImageView>(R.id.startbt)
+        val startBt = findViewById<ImageView>(R.id.startBt)
         startBt.setOnClickListener {
             val intent = Intent(this,Shekesiimsi::class.java)
             startActivity(intent)

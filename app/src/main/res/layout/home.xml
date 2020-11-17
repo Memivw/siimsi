@@ -47,7 +47,7 @@
         app:srcCompat="@drawable/howtobt" />
 
     <ImageView
-        android:id="@+id/startbt"
+        android:id="@+id/startBt"
         android:layout_width="211dp"
         android:layout_height="56dp"
         android:layout_marginTop="40dp"

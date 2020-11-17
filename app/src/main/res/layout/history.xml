@@ -39,7 +39,7 @@
         app:srcCompat="@drawable/homebt" />
 
     <ImageView
-        android:id="@+id/startbt"
+        android:id="@+id/startBt"
         android:layout_width="166dp"
         android:layout_height="58dp"
         android:layout_marginStart="10dp"

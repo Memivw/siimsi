@@ -37,7 +37,7 @@
         app:srcCompat="@drawable/siimsi" />
 
     <ImageView
-        android:id="@+id/startbt"
+        android:id="@+id/startBt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
