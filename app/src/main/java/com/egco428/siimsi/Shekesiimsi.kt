@@ -7,6 +7,7 @@ import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.os.Bundle
+
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.Button
@@ -20,6 +21,10 @@ class Shekesiimsi : AppCompatActivity(), SensorEventListener {
     private var color = false
     private var view: View? = null
     private var lastUpdate: Long = 0
+    //ที่เพิ่มมา
+    private var shake = false
+    private var totalshake = 0f
+    private val previoustotalshake = 0f
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +49,12 @@ class Shekesiimsi : AppCompatActivity(), SensorEventListener {
     override fun onResume() {
         super.onResume()
         sensorManager!!.registerListener(this, sensorManager!!.getDefaultSensor(Sensor.TYPE_ACCELEROMETER) , SensorManager.SENSOR_DELAY_NORMAL)
+       //ที่เพิ่มมา
+        shake = true
+        val stepsensor = sensorManager!!.getDefaultSensor(Sensor.TYPE_STEP_COUNTER)
+        if(stepsensor != null)
+            sensorManager?.registerListener(this,stepsensor,SensorManager.SENSOR_DELAY_UI)
+
     }
 
     override fun onPause() {
@@ -83,9 +94,22 @@ class Shekesiimsi : AppCompatActivity(), SensorEventListener {
 //            }
             val siimsishake = AnimationUtils.loadAnimation(this, R.anim.shake)
             siimsiIm.startAnimation(siimsishake)
-            val rands = (1..50).random()
-            Toast.makeText(this, rands.toString(), Toast.LENGTH_SHORT).show()
-            lastUpdate = actualTime
+            //ที่เพิ่มมา
+                if (shake){
+                    totalshake = event.values[0]
+                    var currentshake = totalshake.toInt()-previoustotalshake.toInt()
+                    check.text = ("$currentshake")
+                    if (currentshake == 5){
+                        val rands = (1..50).random()
+                        Toast.makeText(this, rands.toString(), Toast.LENGTH_SHORT).show()
+                        lastUpdate = actualTime
+                    }
+                }
+
+
+
+
+
         }
 //        if(i >= 5){
 //            val rands = (1..50).random()
