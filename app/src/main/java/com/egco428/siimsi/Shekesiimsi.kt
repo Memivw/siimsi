@@ -7,12 +7,11 @@ import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.os.Bundle
+import android.os.Handler
 
 import android.view.View
 import android.view.animation.AnimationUtils
-import android.widget.Button
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.shakesiimsi.*
 
@@ -95,21 +94,31 @@ class Shekesiimsi : AppCompatActivity(), SensorEventListener {
             val siimsishake = AnimationUtils.loadAnimation(this, R.anim.shake)
             siimsiIm.startAnimation(siimsishake)
             //ที่เพิ่มมา
-                if (shake){
-                    totalshake = event.values[0]
-                    var currentshake = totalshake.toInt()-previoustotalshake.toInt()
-                    check.text = ("$currentshake")
-                    if (currentshake == 5){
-                        val rands = (1..50).random()
-                        Toast.makeText(this, rands.toString(), Toast.LENGTH_SHORT).show()
-                        lastUpdate = actualTime
-                    }
+            if (shake){
+                totalshake = event.values[0]
+                var currentshake = totalshake.toInt()-previoustotalshake.toInt()
+                check.text = ("$currentshake")
+                if (currentshake == -1){
+                    val rands = (1..50).random()
+                    val fadein = AnimationUtils.loadAnimation(this, R.anim.fade_in)
+                    val intent = Intent(this,Result::class.java)
+
+                    //resultsiimsi.visibility
+                    resultsiimsi.startAnimation(fadein)
+                    resultsiimsi.visibility
+                    numbertv.text = rands.toString()
+                    //number.visibility
+                    numbertv.startAnimation(fadein)
+                    numbertv.visibility
+                    val handler = Handler()
+                    handler.postDelayed({
+                        intent.putExtra("luckynumber",rands.toString())
+                        startActivity(intent)
+                    }, 1500)
+                    //Toast.makeText(this, rands.toString(), Toast.LENGTH_SHORT).show()
+                    lastUpdate = actualTime
                 }
-
-
-
-
-
+            }
         }
 //        if(i >= 5){
 //            val rands = (1..50).random()

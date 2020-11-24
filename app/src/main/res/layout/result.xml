@@ -18,8 +18,8 @@
 
         <ImageView
             android:id="@+id/paperIm"
-            android:layout_width="353dp"
-            android:layout_height="600dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
@@ -43,6 +43,22 @@
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="5dp"
             app:srcCompat="@drawable/lamp" />
+
+        <TextView
+            android:id="@+id/numbertv"
+            android:layout_width="156dp"
+            android:layout_height="48dp"
+            android:layout_alignTop="@+id/paperIm"
+            android:layout_alignBottom="@+id/paperIm"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="128dp"
+            android:layout_marginTop="78dp"
+            android:layout_marginEnd="109dp"
+            android:layout_marginBottom="415dp"
+            android:text="TextView"
+            android:textColor="#4E2D23"
+            android:textSize="36sp" />
 
     </RelativeLayout>
 
@@ -79,4 +95,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
