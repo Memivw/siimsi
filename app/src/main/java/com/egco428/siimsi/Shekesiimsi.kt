@@ -81,16 +81,6 @@ class Shekesiimsi : AppCompatActivity(), SensorEventListener {
             if(actualTime - lastUpdate < 200){
                 return
             }
-//            var n = 0
-//            while(n < 5){
-//                val siimsishake = AnimationUtils.loadAnimation(this, R.anim.shake)
-//                siimsiIm.startAnimation(siimsishake)
-//                n++
-//            }
-//            if(n > 5){
-//                val intent = Intent(this,Result::class.java)
-//                startActivity(intent)
-//            }
             val siimsishake = AnimationUtils.loadAnimation(this, R.anim.shake)
             siimsiIm.startAnimation(siimsishake)
             //ที่เพิ่มมา
@@ -98,7 +88,7 @@ class Shekesiimsi : AppCompatActivity(), SensorEventListener {
                 totalshake = event.values[0]
                 var currentshake = totalshake.toInt()-previoustotalshake.toInt()
                 check.text = ("$currentshake")
-                if (currentshake == -1){
+                if (currentshake == 1 || currentshake == -1){
                     val rands = (1..50).random()
                     val fadein = AnimationUtils.loadAnimation(this, R.anim.fade_in)
                     val intent = Intent(this,Result::class.java)
@@ -107,7 +97,6 @@ class Shekesiimsi : AppCompatActivity(), SensorEventListener {
                     resultsiimsi.startAnimation(fadein)
                     resultsiimsi.visibility
                     numbertv.text = rands.toString()
-                    //number.visibility
                     numbertv.startAnimation(fadein)
                     numbertv.visibility
                     val handler = Handler()
@@ -116,7 +105,7 @@ class Shekesiimsi : AppCompatActivity(), SensorEventListener {
                         startActivity(intent)
                     }, 1500)
                     //Toast.makeText(this, rands.toString(), Toast.LENGTH_SHORT).show()
-                    lastUpdate = actualTime
+                    //lastUpdate = actualTime
                 }
             }
         }

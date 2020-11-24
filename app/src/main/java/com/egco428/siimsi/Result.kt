@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.result.*
 import java.io.FileNotFoundException
@@ -17,14 +18,15 @@ import java.io.InputStream
 class Result : AppCompatActivity() {
     private lateinit var screen: View
     private lateinit var imageScreen: ImageView
-
+    private lateinit var actionBar: ActionBar
     private val REQUEST_CODE = 1
     private var bitmap:Bitmap? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.result)
-
+        actionBar = this.supportActionBar!!
+        actionBar.title = "prediction"
         val luckynumber = intent.getStringExtra("luckynumber")
         val paper = AnimationUtils.loadAnimation(this, R.anim.paper)
         val lamp = AnimationUtils.loadAnimation(this, R.anim.ttb)
