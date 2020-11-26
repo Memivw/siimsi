@@ -81,8 +81,9 @@ class Shekesiimsi : AppCompatActivity(), SensorEventListener {
             if(actualTime - lastUpdate < 200){
                 return
             }
-            val siimsishake = AnimationUtils.loadAnimation(this, R.anim.shake)
-            siimsiIm.startAnimation(siimsishake)
+//            val siimsishake = AnimationUtils.loadAnimation(this, R.anim.shake)
+//            siimsiIm.startAnimation(siimsishake)
+            animateSiimsi()
             //ที่เพิ่มมา
             if (shake){
                 totalshake = event.values[0]
@@ -117,5 +118,9 @@ class Shekesiimsi : AppCompatActivity(), SensorEventListener {
 //                startActivity(intent)
 //            }
 //        }
+    }
+    private fun animateSiimsi(){
+        val shake = AnimationUtils.loadAnimation(this, R.anim.shakesiimsi)
+        siimsiIm.animation =shake
     }
 }
