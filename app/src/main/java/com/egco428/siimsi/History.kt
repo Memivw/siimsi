@@ -16,6 +16,7 @@ class History : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.history)
+        //setContentView(ImageViewwithZoom(this))
 
         val homeBt = findViewById<ImageView>(R.id.homebt)
         homeBt.setOnClickListener {
