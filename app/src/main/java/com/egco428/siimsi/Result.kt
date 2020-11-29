@@ -5,11 +5,14 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.result.*
 import java.io.FileNotFoundException
 import java.io.IOException
@@ -19,6 +22,8 @@ class Result : AppCompatActivity() {
     private lateinit var screen: View
     private lateinit var imageScreen: ImageView
     private lateinit var actionBar: ActionBar
+    private lateinit var database: FirebaseDatabase
+    private lateinit var reference: DatabaseReference
     private val REQUEST_CODE = 1
     private var bitmap:Bitmap? = null
 
@@ -38,6 +43,13 @@ class Result : AppCompatActivity() {
         savebt.startAnimation(saveAn)
         backbt.startAnimation(backAn)
         numbertv.text = "ใบที่ " + luckynumber
+        database = FirebaseDatabase.getInstance()
+        reference = database.getReference("simsii")
+        ShowData()
+
+
+
+
         val backBt = findViewById<ImageView>(R.id.backbt)
         backBt.setOnClickListener {
             val intent = Intent(this,MainActivity::class.java)
@@ -52,6 +64,29 @@ class Result : AppCompatActivity() {
 //            screen.setBackgroundColor(Color.parseColor("#999999"))
         }
     }
+
+    private fun ShowData(){
+        reference.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(p0: DataSnapshot) {
+                val luckynumber = intent.getStringExtra("luckynumber")
+                var text = ArrayList<Simsii>()
+                for (data in p0.children){
+                    val model = data.getValue(Simsii::class.java)
+                    text.add(model as Simsii)
+                    if (luckynumber!!.toInt() == model!!.number){
+                        resultmessage.text = model.message
+                    }
+                }
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.e("error",error.toString())
+            }
+        })
+    }
+
+
     companion object Screenshot {
         private fun takeScreenshot(view: View): Bitmap {
             view.isDrawingCacheEnabled = true

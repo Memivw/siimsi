@@ -60,6 +60,21 @@
             android:textColor="#4E2D23"
             android:textSize="36sp" />
 
+        <TextView
+            android:id="@+id/resultmessage"
+            android:layout_width="273dp"
+            android:layout_height="359dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="69dp"
+            android:layout_marginTop="171dp"
+            android:layout_marginEnd="51dp"
+            android:layout_marginBottom="68dp"
+            android:textColor="#686060"
+            android:textSize="14sp" />
+
     </RelativeLayout>
 
     <ImageView

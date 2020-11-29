@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "820434380757",
+    "firebase_url": "https://egco428-simsii.firebaseio.com",
+    "project_id": "egco428-simsii",
+    "storage_bucket": "egco428-simsii.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:820434380757:android:ef08ececac74806b907f5c",
+        "android_client_info": {
+          "package_name": "com.egco428.siimsi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "820434380757-94j7i0ir7u174kv0tlujkt7rghlpb17j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9C7aRua__Y839IJkTUPAzquzRTP2aNIo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "820434380757-94j7i0ir7u174kv0tlujkt7rghlpb17j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
