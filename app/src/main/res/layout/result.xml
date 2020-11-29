@@ -59,6 +59,20 @@
             android:text="TextView"
             android:textColor="#4E2D23"
             android:textSize="36sp" />
+        <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
+            android:id="@+id/imageZoom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <ImageView
+            android:id="@+id/imagescreen"
+            android:layout_width="375dp"
+            android:layout_height="564dp"
+            android:layout_alignStart="@+id/paperIm"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="6dp"
+            android:layout_marginBottom="0dp"
+            tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
             android:id="@+id/resultmessage"
@@ -100,15 +114,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/resultscreen"
         app:srcCompat="@drawable/backbt" />
-
-    <ImageView
-        android:id="@+id/imagescreen"
-        android:layout_width="255dp"
-        android:layout_height="394dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

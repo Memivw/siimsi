@@ -24,7 +24,10 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.*
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.toDrawable
 import androidx.core.view.isInvisible
+import com.davemorrissey.labs.subscaleview.ImageSource
+import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
 import kotlinx.android.synthetic.main.result.*
 import java.io.*
 import java.util.*
@@ -66,8 +69,11 @@ class Result : AppCompatActivity() {
         screen = findViewById(R.id.resultscreen)
         imageScreen = findViewById(R.id.imagescreen)
         val saveBt = findViewById<ImageView>(R.id.savebt)
+
         saveBt.setOnClickListener {
             val b = Screenshot.takeScreenshotOfRootView(screen)
+            val imageZoom = findViewById<SubsamplingScaleImageView>(R.id.imageZoom)
+            imageZoom.setImage(ImageSource.bitmap(b))
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
                 if(ContextCompat.checkSelfPermission(this,Manifest.permission.WRITE_EXTERNAL_STORAGE)!=PackageManager.PERMISSION_GRANTED){
                     ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),100)
