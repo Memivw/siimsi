@@ -55,6 +55,9 @@ class Result : AppCompatActivity() {
         savebt.startAnimation(saveAn)
         backbt.startAnimation(backAn)
         numbertv.text = "ใบที่ " + luckynumber
+        database = FirebaseDatabase.getInstance()
+        reference = database.getReference("simsii")
+        ShowData()
         val backBt = findViewById<ImageView>(R.id.backbt)
         backBt.setOnClickListener {
             val intent = Intent(this,MainActivity::class.java)
@@ -76,6 +79,26 @@ class Result : AppCompatActivity() {
             }
 
         }
+    }
+    private fun ShowData(){
+        reference.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(p0: DataSnapshot) {
+                val luckynumber = intent.getStringExtra("luckynumber")
+                var text = ArrayList<Simsii>()
+                for (data in p0.children){
+                    val model = data.getValue(Simsii::class.java)
+                    text.add(model as Simsii)
+                    if (luckynumber!!.toInt() == model!!.number){
+                        resultmessage.text = model.message
+                    }
+                }
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.e("error",error.toString())
+            }
+        })
     }
     companion object Screenshot {
         private fun takeScreenshot(view: View): Bitmap {
