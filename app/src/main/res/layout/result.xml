@@ -56,7 +56,9 @@
             android:layout_marginTop="78dp"
             android:layout_marginEnd="109dp"
             android:layout_marginBottom="415dp"
+            android:fontFamily="@font/kanit_light"
             android:text="TextView"
+            android:textAlignment="center"
             android:textColor="#4E2D23"
             android:textSize="36sp" />
         <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
@@ -86,7 +88,8 @@
             android:layout_marginTop="171dp"
             android:layout_marginEnd="51dp"
             android:layout_marginBottom="68dp"
-            android:textColor="#686060"
+            android:fontFamily="@font/kanit_light"
+            android:textColor="#323232"
             android:textSize="14sp" />
 
     </RelativeLayout>

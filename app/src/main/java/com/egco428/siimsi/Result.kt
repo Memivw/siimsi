@@ -9,6 +9,7 @@ import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Build
 import android.Manifest
+import android.graphics.Typeface
 import android.os.Bundle
 import android.util.Log
 import android.os.Environment
