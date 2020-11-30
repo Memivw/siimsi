@@ -23,6 +23,10 @@
         <activity android:name=".Result" />
         <activity android:name=".History" />
         <activity android:name=".Howto" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
