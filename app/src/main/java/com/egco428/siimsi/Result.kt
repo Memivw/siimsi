@@ -43,12 +43,16 @@ class Result : AppCompatActivity() {
     private val REQUEST_CODE = 1
     private var bitmap:Bitmap? = null
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.result)
         actionBar = this.supportActionBar!!
         actionBar.title = "prediction"
         val luckynumber = intent.getStringExtra("luckynumber")
+        database = FirebaseDatabase.getInstance()
+        reference = database.getReference("simsii")
+        ShowData()
         val paper = AnimationUtils.loadAnimation(this, R.anim.paper)
         val lamp = AnimationUtils.loadAnimation(this, R.anim.ttb)
         val saveAn = AnimationUtils.loadAnimation(this, R.anim.save)
@@ -59,21 +63,19 @@ class Result : AppCompatActivity() {
         savebt.startAnimation(saveAn)
         backbt.startAnimation(backAn)
         numbertv.text = "ใบที่ " + luckynumber
-        database = FirebaseDatabase.getInstance()
-        reference = database.getReference("simsii")
-        ShowData()
+        numbertv.startAnimation(paper)
+        resultmessage.startAnimation(lamp)
+        screen = findViewById(R.id.resultscreen)
+        val imageZoom = findViewById<SubsamplingScaleImageView>(R.id.imageZoom)
         val backBt = findViewById<ImageView>(R.id.backbt)
         backBt.setOnClickListener {
             val intent = Intent(this,MainActivity::class.java)
             startActivity(intent)
         }
-        screen = findViewById(R.id.resultscreen)
-        imageScreen = findViewById(R.id.imagescreen)
         val saveBt = findViewById<ImageView>(R.id.savebt)
-
         saveBt.setOnClickListener {
+
             val b = Screenshot.takeScreenshotOfRootView(screen)
-            val imageZoom = findViewById<SubsamplingScaleImageView>(R.id.imageZoom)
             imageZoom.setImage(ImageSource.bitmap(b))
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
                 if(ContextCompat.checkSelfPermission(this,Manifest.permission.WRITE_EXTERNAL_STORAGE)!=PackageManager.PERMISSION_GRANTED){
@@ -92,20 +94,30 @@ class Result : AppCompatActivity() {
             override fun onDataChange(p0: DataSnapshot) {
                 val luckynumber = intent.getStringExtra("luckynumber")
                 var text = ArrayList<Simsii>()
+//                screen = findViewById(R.id.resultscreen)
+//                val imageZoom = findViewById<SubsamplingScaleImageView>(R.id.imageZoom)
                 for (data in p0.children){
                     val model = data.getValue(Simsii::class.java)
                     text.add(model as Simsii)
                     if (luckynumber!!.toInt() == model!!.number){
                         resultmessage.text = model.message
+//                        val image = Screenshot.takeScreenshotOfRootView(screen)
+//                        imageZoom.setImage(ImageSource.bitmap(image))
                     }
                 }
-
             }
 
             override fun onCancelled(error: DatabaseError) {
                 Log.e("error",error.toString())
             }
         })
+    }
+    private fun CreateImage(): Bitmap? {
+        screen = findViewById(R.id.resultscreen)
+        val imageZoom = findViewById<SubsamplingScaleImageView>(R.id.imageZoom)
+        val image = Screenshot.takeScreenshotOfRootView(screen)
+        imageZoom.setImage(ImageSource.bitmap(image))
+        return image
     }
     companion object Screenshot {
         private fun takeScreenshot(view: View): Bitmap {
@@ -161,7 +173,7 @@ class Result : AppCompatActivity() {
         val path = Environment.getExternalStorageDirectory().toString()
 
         // Create a file to save the image
-        val file = File(path, "${UUID.randomUUID()}.jpg")
+        val file = File(path, "siimsi.jpg")
 
         try {
             // Get the file output stream
@@ -178,10 +190,14 @@ class Result : AppCompatActivity() {
             Toast.makeText(this, "save success", Toast.LENGTH_SHORT).show()
         } catch (e: IOException){ // Catch the exception
             e.printStackTrace()
-            Toast.makeText(this, "errorrrrr", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "can not save image", Toast.LENGTH_SHORT).show()
         }
 
         // Return the saved image path to uri
 
+    }
+
+    override fun onStop() {
+        super.onStop()
     }
 }

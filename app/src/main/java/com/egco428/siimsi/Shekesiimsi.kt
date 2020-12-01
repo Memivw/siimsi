@@ -93,7 +93,7 @@ class Shekesiimsi : AppCompatActivity(), SensorEventListener {
                     val rands = (1..50).random()
                     val fadein = AnimationUtils.loadAnimation(this, R.anim.fade_in)
                     val intent = Intent(this,Result::class.java)
-
+                    onPause()
                     //resultsiimsi.visibility
                     resultsiimsi.startAnimation(fadein)
                     resultsiimsi.visibility

@@ -44,7 +44,9 @@
                 android:text="TextView"
                 android:textAlignment="center"
                 android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:fontFamily="@font/kanit_light"
+                />
 
             <TextView
                 android:id="@+id/datatv"
@@ -53,7 +55,9 @@
                 android:gravity="center"
                 android:text="TextView"
                 android:textAlignment="center"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:fontFamily="@font/kanit_light"
+                />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
