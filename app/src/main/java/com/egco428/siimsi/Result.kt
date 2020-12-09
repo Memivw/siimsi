@@ -67,6 +67,10 @@ class Result : AppCompatActivity() {
         resultmessage.startAnimation(lamp)
         screen = findViewById(R.id.resultscreen)
         val imageZoom = findViewById<SubsamplingScaleImageView>(R.id.imageZoom)
+        database = FirebaseDatabase.getInstance()
+        reference = database.getReference("simsii")
+        ShowData()
+
         val backBt = findViewById<ImageView>(R.id.backbt)
         backBt.setOnClickListener {
             val intent = Intent(this,MainActivity::class.java)
@@ -101,8 +105,6 @@ class Result : AppCompatActivity() {
                     text.add(model as Simsii)
                     if (luckynumber!!.toInt() == model!!.number){
                         resultmessage.text = model.message
-//                        val image = Screenshot.takeScreenshotOfRootView(screen)
-//                        imageZoom.setImage(ImageSource.bitmap(image))
                     }
                 }
             }
