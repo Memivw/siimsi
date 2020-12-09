@@ -81,16 +81,16 @@ class Shekesiimsi : AppCompatActivity(), SensorEventListener {
             if(actualTime - lastUpdate < 200){
                 return
             }
-//            val siimsishake = AnimationUtils.loadAnimation(this, R.anim.shake)
-//            siimsiIm.startAnimation(siimsishake)
-            animateSiimsi()
+            val siimsishake = AnimationUtils.loadAnimation(this, R.anim.shakesiimsi)
+            siimsiIm.startAnimation(siimsishake)
+//            animateSiimsi()
             //ที่เพิ่มมา
             if (shake){
                 totalshake = event.values[0]
                 var currentshake = totalshake.toInt()-previoustotalshake.toInt()
 //                check.text = ("$currentshake")
                 if (currentshake == 1 || currentshake == -1){
-                    val rands = (1..1).random()
+                    val rands = (1..10).random()
                     val fadein = AnimationUtils.loadAnimation(this, R.anim.fade_in)
                     val intent = Intent(this,Result::class.java)
                     onPause()

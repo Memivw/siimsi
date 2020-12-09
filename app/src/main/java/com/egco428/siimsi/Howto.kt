@@ -39,10 +39,11 @@ class Howto: AppCompatActivity()  {
         imageList.add(image)
     }
     private fun postToList(){
-        addToList(R.drawable.how_w1,R.drawable.how1)
+        addToList(R.drawable.how_w12,R.drawable.how1)
         addToList(R.drawable.how_w2,R.drawable.how2)
         addToList(R.drawable.how_w3,R.drawable.how3)
-        addToList(R.drawable.how_w4,R.drawable.how4)
+        addToList(R.drawable.how_w4,R.drawable.how42)
+        addToList(R.drawable.how_w5,R.drawable.how1)
     }
 }
 

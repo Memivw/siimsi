@@ -5,31 +5,25 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.graphics.drawable.BitmapDrawable
-import android.net.Uri
 import android.os.Build
 import android.Manifest
-import android.graphics.Typeface
 import android.os.Bundle
 import android.util.Log
 import android.os.Environment
-import android.provider.MediaStore
-import android.util.DisplayMetrics
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.*
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.graphics.drawable.toDrawable
-import androidx.core.view.isInvisible
 import com.davemorrissey.labs.subscaleview.ImageSource
 import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
 import kotlinx.android.synthetic.main.result.*
+import kotlinx.android.synthetic.main.result.numbertv
+import kotlinx.android.synthetic.main.shakesiimsi.*
 import java.io.*
 import java.util.*
 
@@ -57,23 +51,24 @@ class Result : AppCompatActivity() {
         val lamp = AnimationUtils.loadAnimation(this, R.anim.ttb)
         val saveAn = AnimationUtils.loadAnimation(this, R.anim.save)
         val backAn = AnimationUtils.loadAnimation(this, R.anim.back)
+        val resultwordAn = AnimationUtils.loadAnimation(this, R.anim.shakeword)
         paperIm.startAnimation(paper)
         lampIm1.startAnimation(lamp)
         lampIm2.startAnimation(lamp)
         savebt.startAnimation(saveAn)
-        backbt.startAnimation(backAn)
+        nextbt.startAnimation(backAn)
         numbertv.text = "ใบที่ " + luckynumber
         numbertv.startAnimation(paper)
-        resultmessage.startAnimation(lamp)
+        resultmessage.startAnimation(resultwordAn)
         screen = findViewById(R.id.resultscreen)
         val imageZoom = findViewById<SubsamplingScaleImageView>(R.id.imageZoom)
         database = FirebaseDatabase.getInstance()
         reference = database.getReference("simsii")
         ShowData()
 
-        val backBt = findViewById<ImageView>(R.id.backbt)
+        val backBt = findViewById<ImageView>(R.id.nextbt)
         backBt.setOnClickListener {
-            val intent = Intent(this,MainActivity::class.java)
+            val intent = Intent(this,EndActivity::class.java)
             startActivity(intent)
         }
         val saveBt = findViewById<ImageView>(R.id.savebt)
