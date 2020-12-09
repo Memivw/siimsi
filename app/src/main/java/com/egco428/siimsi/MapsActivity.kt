@@ -1,8 +1,11 @@
 package com.egco428.siimsi
 
+import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Geocoder
+import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.SearchView
@@ -11,7 +14,8 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException
 import com.google.android.gms.common.GooglePlayServicesRepairableException
-import com.google.android.gms.location.places.ui.PlacePicker
+//import com.google.android.gms.location.places.ui.PlacePicker
+
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -26,7 +30,10 @@ import java.io.IOException
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
+    private var latLng: LatLng? = null
+    internal lateinit var mLastLocation: Location
     private val LOCATION_PERMISSION_REQUEST = 1
+    lateinit var mapFragment: SupportMapFragment
 
     private fun getLocationAccess(){
         if(ContextCompat.checkSelfPermission(this,android.Manifest.permission.ACCESS_FINE_LOCATION)==PackageManager.PERMISSION_GRANTED){
@@ -42,6 +49,23 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     ) {
         if(requestCode == LOCATION_PERMISSION_REQUEST){
             if(grantResults.contains(PackageManager.PERMISSION_GRANTED)){
+                if (ActivityCompat.checkSelfPermission(
+                        this,
+                        Manifest.permission.ACCESS_FINE_LOCATION
+                    ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                        this,
+                        Manifest.permission.ACCESS_COARSE_LOCATION
+                    ) != PackageManager.PERMISSION_GRANTED
+                ) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+                    return
+                }
                 mMap.isMyLocationEnabled = true
             } else {
                 Toast.makeText(this,"User has not granted location acccess permission",Toast.LENGTH_LONG).show()
@@ -52,31 +76,28 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
         override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_maps)
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        val mapFragment = supportFragmentManager
-            .findFragmentById(R.id.map) as SupportMapFragment
-        mapFragment.getMapAsync(this)
-
+            super.onCreate(savedInstanceState)
+            setContentView(R.layout.activity_maps)
+            // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+            val mapFragment = supportFragmentManager
+                .findFragmentById(R.id.map) as SupportMapFragment
+            mapFragment.getMapAsync(this)
+            backbtn.setOnClickListener {
+                val intent = Intent(this,HelpActivity::class.java)
+                startActivity(intent)
+            }
 
     }
 
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
         getLocationAccess()
         // Add a marker in Sydney and move the camera
-//        val watjadee = LatLng(8.9112, 99.8475)
-//        mMap.addMarker(MarkerOptions().position(watjadee).title("Wat Jadee"))
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(watjadee))
+        val watjadee = LatLng(8.9112, 99.8475)
+        mMap.addMarker(MarkerOptions().position(watjadee).title("Wat Jadee"))
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(watjadee))
+    }
+    fun getdirectionURL(origin:LatLng,dest:LatLng) : String{
+        return "http://maps.googleapis.com/maps/api/directions/json?origin=${origin.latitude},${origin.longitude}&destination=${dest.latitude},${dest.longitude}&sensor=false&mode=driving"
     }
 }

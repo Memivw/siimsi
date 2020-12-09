@@ -7,36 +7,24 @@
     android:background="#50252f">
 
     <ImageView
-        android:id="@+id/helpbanner"
+        android:id="@+id/wishimg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/helpword" />
+        app:srcCompat="@drawable/makewishword" />
 
     <ImageView
-        android:id="@+id/findtempbtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:id="@+id/goldimg"
+        android:layout_width="333dp"
+        android:layout_height="376dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/helpbanner"
-        app:srcCompat="@drawable/findtempbtn2" />
-
-    <ImageView
-        android:id="@+id/feedfishbtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.447"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/findtempbtn"
-        app:srcCompat="@drawable/feedbtn" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/gold" />
 
     <ImageView
         android:id="@+id/backhomebtn"
@@ -45,6 +33,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/feedfishbtn"
+        app:layout_constraintTop_toBottomOf="@+id/goldimg"
         app:srcCompat="@drawable/backbt" />
 </androidx.constraintlayout.widget.ConstraintLayout>
