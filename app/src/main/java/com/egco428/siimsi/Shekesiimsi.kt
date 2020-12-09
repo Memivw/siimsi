@@ -88,7 +88,7 @@ class Shekesiimsi : AppCompatActivity(), SensorEventListener {
             if (shake){
                 totalshake = event.values[0]
                 var currentshake = totalshake.toInt()-previoustotalshake.toInt()
-                check.text = ("$currentshake")
+//                check.text = ("$currentshake")
                 if (currentshake == 1 || currentshake == -1){
                     val rands = (1..1).random()
                     val fadein = AnimationUtils.loadAnimation(this, R.anim.fade_in)
