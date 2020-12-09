@@ -21,4 +21,17 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:context=".MapsActivity" />
 
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/location"
+        android:layout_width="369dp"
+        android:layout_height="41dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/bg_round"
+        android:elevation="5dp"
+        app:iconifiedByDefault="false"
+        app:queryHint="Search..."
+        tools:layout_editor_absoluteX="21dp"
+        tools:layout_editor_absoluteY="58dp" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
