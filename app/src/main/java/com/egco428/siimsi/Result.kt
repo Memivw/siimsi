@@ -92,6 +92,10 @@ class Result : AppCompatActivity() {
             }
 
         }
+        gpsbtn.setOnClickListener {
+            intent = Intent(this,MapsActivity::class.java)
+            startActivity(intent)
+        }
     }
     private fun ShowData(){
         reference.addValueEventListener(object : ValueEventListener {
