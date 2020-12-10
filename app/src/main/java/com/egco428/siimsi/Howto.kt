@@ -20,20 +20,28 @@ class Howto: AppCompatActivity()  {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.howto)
 
+//        set actionbar
         actionBar = this.supportActionBar!!
         actionBar.title ="HowtoSiimsi"
-//        val homeBt = findViewById<ImageView>(R.id.homebt)
-//        homeBt.setOnClickListener {
-//            val intent = Intent(this,MainActivity::class.java)
-//            startActivity(intent)
-//        }
+
+//      Create pager
         postToList()
         view_pager.adapter = ViewPagerAdapter(imwordList,imageList)
         view_pager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
 
+//        set dot at page
         val dot = findViewById<WormDotsIndicator>(R.id.dot)
         dot.setViewPager2(view_pager)
+
+//        set Button for intent
+        val backBt = findViewById<ImageView>(R.id.backbtn)
+        backBt.setOnClickListener {
+            val intent = Intent(this,MainActivity::class.java)
+            startActivity(intent)
+        }
     }
+
+//  function add list to  Model
     private fun addToList(imword:Int,image:Int){
         imwordList.add(imword)
         imageList.add(image)

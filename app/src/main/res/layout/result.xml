@@ -115,13 +115,4 @@
         app:layout_constraintTop_toBottomOf="@+id/resultscreen"
         app:srcCompat="@drawable/nextbtn" />
 
-    <Button
-        android:id="@+id/gpsbtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="gps"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/savebt" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

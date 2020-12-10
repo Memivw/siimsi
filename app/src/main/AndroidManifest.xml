@@ -49,6 +49,7 @@
         <activity android:name=".EndActivity" />
         <activity android:name=".HelpActivity" />
         <activity android:name=".FeedFishActivity" />
+        <activity android:name=".WishActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

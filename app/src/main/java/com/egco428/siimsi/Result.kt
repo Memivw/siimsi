@@ -41,12 +41,12 @@ class Result : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.result)
+
+//        set actionbar
         actionBar = this.supportActionBar!!
         actionBar.title = "prediction"
-        val luckynumber = intent.getStringExtra("luckynumber")
-        database = FirebaseDatabase.getInstance()
-        reference = database.getReference("simsii")
-        ShowData()
+
+//        set animation
         val paper = AnimationUtils.loadAnimation(this, R.anim.paper)
         val lamp = AnimationUtils.loadAnimation(this, R.anim.ttb)
         val saveAn = AnimationUtils.loadAnimation(this, R.anim.save)
@@ -57,23 +57,31 @@ class Result : AppCompatActivity() {
         lampIm2.startAnimation(lamp)
         savebt.startAnimation(saveAn)
         nextbt.startAnimation(backAn)
+
+ //        get number from Shakesiimsi
+        val luckynumber = intent.getStringExtra("luckynumber")
+
+//        set text and animation
         numbertv.text = "ใบที่ " + luckynumber
         numbertv.startAnimation(paper)
         resultmessage.startAnimation(resultwordAn)
         screen = findViewById(R.id.resultscreen)
-        val imageZoom = findViewById<SubsamplingScaleImageView>(R.id.imageZoom)
+
+//        load data from database
         database = FirebaseDatabase.getInstance()
         reference = database.getReference("simsii")
         ShowData()
 
+//        set button for intent
         val backBt = findViewById<ImageView>(R.id.nextbt)
         backBt.setOnClickListener {
             val intent = Intent(this,EndActivity::class.java)
             startActivity(intent)
         }
+
+//        save image to storage and zoom
         val saveBt = findViewById<ImageView>(R.id.savebt)
         saveBt.setOnClickListener {
-
             val b = Screenshot.takeScreenshotOfRootView(screen)
             imageZoom.setImage(ImageSource.bitmap(b))
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
@@ -87,18 +95,14 @@ class Result : AppCompatActivity() {
             }
 
         }
-        gpsbtn.setOnClickListener {
-            intent = Intent(this,MapsActivity::class.java)
-            startActivity(intent)
-        }
     }
+
+//    function load and set result
     private fun ShowData(){
         reference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(p0: DataSnapshot) {
                 val luckynumber = intent.getStringExtra("luckynumber")
                 var text = ArrayList<Simsii>()
-//                screen = findViewById(R.id.resultscreen)
-//                val imageZoom = findViewById<SubsamplingScaleImageView>(R.id.imageZoom)
                 for (data in p0.children){
                     val model = data.getValue(Simsii::class.java)
                     text.add(model as Simsii)
@@ -113,6 +117,8 @@ class Result : AppCompatActivity() {
             }
         })
     }
+
+//  create image by sceenshot
     private fun CreateImage(): Bitmap? {
         screen = findViewById(R.id.resultscreen)
         val imageZoom = findViewById<SubsamplingScaleImageView>(R.id.imageZoom)
@@ -169,6 +175,8 @@ class Result : AppCompatActivity() {
         }
 
     }
+
+    //    funtion save Image to storage
     private fun saveImageToExternalStorage(bitmap:Bitmap){
         // Get the external storage directory path
         val path = Environment.getExternalStorageDirectory().toString()

@@ -14,20 +14,22 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.home)
 
+//      set Animation
         val ttb = AnimationUtils.loadAnimation(this, R.anim.ttb)
         val nameAn = AnimationUtils.loadAnimation(this, R.anim.name)
         val fadein = AnimationUtils.loadAnimation(this, R.anim.fade_in)
         val histbtAn = AnimationUtils.loadAnimation(this, R.anim.histbt)
         val howtobtAn = AnimationUtils.loadAnimation(this, R.anim.howtobt)
-        val siimsi = AnimationUtils.loadAnimation(this, R.anim.siimsi)
-        val siimsibounce = AnimationUtils.loadAnimation(this, R.anim.bounce)
-        val startAn = AnimationUtils.loadAnimation(this, R.anim.startbt)
+
+//      start Animation
         circleimageView.startAnimation(fadein)
         name.startAnimation(nameAn)
-//        siimsiIm.startAnimation(siimsi)
         historybt.startAnimation(histbtAn)
         howtobt.startAnimation(howtobtAn)
         startBt.startAnimation(ttb)
+
+//      set Button to intent
+
         val histBt = findViewById<ImageView>(R.id.historybt)
         histBt.setOnClickListener {
             val intent = Intent(this,History::class.java)
@@ -38,7 +40,6 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this,Howto::class.java)
             startActivity(intent)
         }
-//
         val startBt = findViewById<ImageView>(R.id.startBt)
         startBt.setOnClickListener {
             val intent = Intent(this,Shekesiimsi::class.java)

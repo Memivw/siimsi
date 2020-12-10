@@ -12,12 +12,12 @@ class EndActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.end)
-
+//      set animation
         val wordAn = AnimationUtils.loadAnimation(this, R.anim.shakeword)
         val nextbtnAn = AnimationUtils.loadAnimation(this, R.anim.siimsi)
         endimg.startAnimation(wordAn)
         nextbtn.startAnimation(wordAn)
-
+//      set button
         val nextBt = findViewById<ImageView>(R.id.nextbtn)
         nextBt.setOnClickListener {
             val intent = Intent(this,HelpActivity::class.java)

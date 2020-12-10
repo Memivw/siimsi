@@ -17,10 +17,10 @@ class WishActivity: AppCompatActivity() {
 //        endimg.startAnimation(wordAn)
 //        nextbtn.startAnimation(wordAn)
 //
-//        val nextBt = findViewById<ImageView>(R.id.nextbtn)
-//        nextBt.setOnClickListener {
-//            val intent = Intent(this,HelpActivity::class.java)
-//            startActivity(intent)
-//        }
+        val backBt = findViewById<ImageView>(R.id.backhomebtn)
+        backBt.setOnClickListener {
+            val intent = Intent(this,MainActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

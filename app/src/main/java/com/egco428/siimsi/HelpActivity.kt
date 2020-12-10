@@ -11,7 +11,7 @@ class HelpActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.help)
-
+//      set animation
         val wordAn = AnimationUtils.loadAnimation(this, R.anim.helpword)
         val findtempbtAn = AnimationUtils.loadAnimation(this, R.anim.find)
         val feedfishbtAn = AnimationUtils.loadAnimation(this, R.anim.feed)
@@ -22,6 +22,7 @@ class HelpActivity: AppCompatActivity() {
         feedfishbtn.startAnimation(feedfishbtAn)
         backhomebtn.startAnimation(backhomebtAn)
 
+//        set button
         val findtempBtn = findViewById<ImageView>(R.id.findtempbtn)
         findtempBtn.setOnClickListener {
             val intent = Intent(this,MapsActivity::class.java)

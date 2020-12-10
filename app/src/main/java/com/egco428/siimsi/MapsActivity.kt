@@ -8,6 +8,7 @@ import android.location.Geocoder
 import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
@@ -35,6 +36,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private val LOCATION_PERMISSION_REQUEST = 1
     lateinit var mapFragment: SupportMapFragment
 
+//    request permission location
     private fun getLocationAccess(){
         if(ContextCompat.checkSelfPermission(this,android.Manifest.permission.ACCESS_FINE_LOCATION)==PackageManager.PERMISSION_GRANTED){
             mMap.isMyLocationEnabled = true
@@ -57,13 +59,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                         Manifest.permission.ACCESS_COARSE_LOCATION
                     ) != PackageManager.PERMISSION_GRANTED
                 ) {
-                    // TODO: Consider calling
-                    //    ActivityCompat#requestPermissions
-                    // here to request the missing permissions, and then overriding
-                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                    //                                          int[] grantResults)
-                    // to handle the case where the user grants the permission. See the documentation
-                    // for ActivityCompat#requestPermissions for more details.
                     return
                 }
                 mMap.isMyLocationEnabled = true
@@ -78,21 +73,20 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
             setContentView(R.layout.activity_maps)
-            // Obtain the SupportMapFragment and get notified when the map is ready to be used.
             val mapFragment = supportFragmentManager
                 .findFragmentById(R.id.map) as SupportMapFragment
             mapFragment.getMapAsync(this)
-            backbtn.setOnClickListener {
+            val backBt = findViewById<ImageView>(R.id.backbtn)
+            backBt.setOnClickListener {
                 val intent = Intent(this,HelpActivity::class.java)
                 startActivity(intent)
             }
-
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
         getLocationAccess()
-        // Add a marker in Sydney and move the camera
+        // Add a marker in Wat Jadee and move the camera
         val watjadee = LatLng(8.9112, 99.8475)
         mMap.addMarker(MarkerOptions().position(watjadee).title("Wat Jadee"))
         mMap.moveCamera(CameraUpdateFactory.newLatLng(watjadee))

@@ -16,14 +16,18 @@ class History : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.history)
-        //setContentView(ImageViewwithZoom(this))
 
+//       set Button to intent
         val homeBt = findViewById<ImageView>(R.id.homebt)
         homeBt.setOnClickListener {
             val intent = Intent(this,MainActivity::class.java)
             startActivity(intent)
         }
+//       set Actionbar
         actionBar = this.supportActionBar!!
+
+//      display  loadcard
+
         loadCards()
         viewPager.addOnPageChangeListener(object: ViewPager.OnPageChangeListener{
             override fun onPageScrollStateChanged(state: Int) {
